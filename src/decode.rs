@@ -1,4 +1,10 @@
-pub(crate) fn decode(buffer: &[u8], bits: usize, length: usize) -> Vec<u64> {
+pub(crate) fn decode(buffer: &[u8], bits: usize, length: usize) -> Option<Vec<u64>> {
+    let bytes_required = (length * bits) / 8 + 8;
+
+    if buffer.len() < bytes_required {
+        return None;
+    }
+
     let mut values = Vec::<u64>::with_capacity(length);
 
     for index in 0..length {
@@ -13,7 +19,7 @@ pub(crate) fn decode(buffer: &[u8], bits: usize, length: usize) -> Vec<u64> {
         values.push(value);
     }
 
-    values
+    Some(values)
 }
 
 #[cfg(test)]
@@ -28,7 +34,7 @@ mod tests {
 
     fn invert(input: Vec<u64>) {
         let (bits, buffer) = encode(input.as_slice());
-        let output = decode(buffer.as_slice(), bits, input.len());
+        let output = decode(buffer.as_slice(), bits, input.len()).unwrap();
 
         assert_eq!(input, output);
     }
