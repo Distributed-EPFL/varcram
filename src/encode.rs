@@ -2,9 +2,9 @@ use crate::bits;
 
 pub(crate) fn encode(values: &[u64]) -> (usize, Vec<u8>) {
     let bits = bits(values);
-    let length = (values.len() * bits) / 8 + 8;
+    let capacity = (values.len() * bits) / 8 + 8;
 
-    let mut buffer: Vec<u8> = vec![0; length];
+    let mut buffer: Vec<u8> = vec![0; capacity];
 
     for (index, value) in values.iter().copied().enumerate() {
         let bit_offset = index * bits;
