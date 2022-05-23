@@ -3,9 +3,10 @@
 mod bits;
 mod decode;
 mod encode;
+mod varcram;
 
 // Functions
 
-use bits::bits;
-use decode::decode;
-use encode::encode;
+use crate::{bits::bits, decode::decode, encode::encode};
+
+pub use crate::varcram::VarCram;
