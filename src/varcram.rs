@@ -1,5 +1,8 @@
 use crate::{decode, encode};
 
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
 pub struct VarCram {
     buffer: Vec<u8>,
     bits: u64,
