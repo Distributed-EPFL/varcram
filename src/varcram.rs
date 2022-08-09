@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct VarCram {
+    #[serde(with = "serde_bytes")]
     buffer: Vec<u8>,
     bits: u64,
     length: u64,
