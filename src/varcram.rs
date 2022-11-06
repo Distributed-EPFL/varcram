@@ -2,7 +2,7 @@ use crate::{decode, encode};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct VarCram {
     #[serde(with = "serde_bytes")]
     buffer: Vec<u8>,
